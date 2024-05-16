@@ -18,8 +18,9 @@ function AadharVerification({ onSuccess }) {
     setSentCode(code);
 
     try {
-      await axios.post('http://localhost:5001/send-code', { phoneNumber, code });
+      await axios.post('http://localhost:5005/send-code', { phoneNumber, code });
       setVerificationStatus("Code sent to " + phoneNumber);
+      
     } catch (error) {
       console.error("Error sending code:", error);
       setVerificationStatus("Failed to send code");
@@ -29,13 +30,12 @@ function AadharVerification({ onSuccess }) {
   const verifyCode = () => {
     if (verificationCode === sentCode) {
       setVerificationStatus("Verification successful");
+      onSuccess(); // Call the onSuccess callback passed from the parent component
     } else {
       setVerificationStatus("Invalid verification code");
     }
   };
   
-  
-
   const handleAadharChange = (e) => {
     const input = e.target.value.replace(/\D/g, '').slice(0, 12);
     setAadharNumber(input);
@@ -48,7 +48,7 @@ function AadharVerification({ onSuccess }) {
 
   return (
     <div style={{ 
-      backgroundColor: 'skyblue', /* Add gradient background */
+      backgroundColor: 'skyblue',
       padding: '20px', 
       borderRadius: '10px', 
       color: 'black', 
@@ -66,8 +66,8 @@ function AadharVerification({ onSuccess }) {
           type="text"
           value={aadharNumber}
           onChange={handleAadharChange}
-          pattern="[0-9]*" // Accept only integers
-          style={{ borderRadius: '20px', padding: '10px' }} /* Make the text box curved */
+          pattern="[0-9]*" 
+          style={{ borderRadius: '20px', padding: '10px' }} 
         />
       </div>
       {phoneVisible && (
@@ -77,7 +77,7 @@ function AadharVerification({ onSuccess }) {
             type="text"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ borderRadius: '20px', padding: '10px' }} /* Make the text box curved */
+            style={{ borderRadius: '20px', padding: '10px' }} 
           />
         </div>
       )}
@@ -93,7 +93,7 @@ function AadharVerification({ onSuccess }) {
               type="text"
               value={verificationCode}
               onChange={(e) => setVerificationCode(e.target.value)}
-              style={{ borderRadius: '20px', padding: '10px' }} /* Make the text box curved */
+              style={{ borderRadius: '20px', padding: '10px' }} 
             />
             <button onClick={verifyCode} style={{ borderRadius: '20px', padding: '10px', marginLeft: '10px' }}>Verify</button>
           </div>
