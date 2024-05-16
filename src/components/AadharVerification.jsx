@@ -18,7 +18,7 @@ function AadharVerification() {
     setSentCode(code);
 
     try {
-      await axios.post('http://localhost:5005/send-code', { phoneNumber, code });
+      await axios.post('http://localhost:5001/send-code', { phoneNumber, code });
       setVerificationStatus("Code sent to " + phoneNumber);
     } catch (error) {
       console.error("Error sending code:", error);
@@ -29,10 +29,85 @@ function AadharVerification() {
   const verifyCode = () => {
     if (verificationCode === sentCode) {
       setVerificationStatus("Verification successful");
+      // Open a new tab with HTML content
+      const htmlContent = `
+      <html lang="en">
+
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+          <style>
+              body {
+                  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+              }
+          </style>
+      </head>
+      
+      <body>
+          <!-- Header navigation-->
+          <section class="text-black-900 body-font">
+              <div class="container px-5 py-24 mx-auto">
+                  <div class="flex flex-col">
+                      <div class="h-1 bg-gray-500 rounded overflow-hidden">
+                          <div class="w-50 h-full bg-indigo-900"></div>
+                      </div>
+                      <div class="flex flex-col text-center w-full mb-12">
+                          <h1 class="sm:text-8xl text-6xl font-medium title-font mb-4 text-red-900">WELCOME BACK!</h1>
+                          <p class="sm:text-3xl text-1xl font-medium title-font mb-4 text-orange-900">One portal for all secure transactions</p>
+                      </div>
+                      <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+                          <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+                              <div class="rounded-lg h-64 overflow-hidden">
+                                  <img alt="content" class="object-cover object-center h-full w-full"
+                                      src="https://as2.ftcdn.net/v2/jpg/05/13/85/99/1000_F_513859951_SLeBtUCREYfhMkN4OocxBK9GHeR5JUCa.jpg">
+                              </div>
+                              <h2 class="text-2xl font-medium title-font text-red-900 mt-5">  BALANCE AND TRANSACTIONS</h2>
+                              <p class="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">View your balance and recent transactions here</p>
+                              <!-- Anchor tag for linking to balance_transactions.html -->
+                              <a href="dwsample1-html.html">
+                                  <button class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+                              </a>
+                          </div>
+                          <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+                              <div class="rounded-lg h-64 overflow-hidden">
+                                  <img alt="content" class="object-cover object-center h-full w-full"
+                                      src="https://www.5paisa.com/mutual-funds/wp-content/uploads/blog-oct-12-1.jpg?x64567">
+                              </div>
+                              <h2 class="text-2xl font-medium title-font text-red-900 mt-5">BUY DIGITAL CURRENCY</h2>
+                              <p class="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">Purchase your preferred digital currency with ease</p>
+                              <!-- Anchor tag for linking to buy_digital_currency.html -->
+                              <a href="dwsample1-html.html">
+                                  <button class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+                              </a>
+                          </div>
+                          <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+                              <div class="rounded-lg h-64 overflow-hidden">
+                                  <img alt="content" class="object-cover object-center h-full w-full"
+                                      src="https://img.freepik.com/premium-vector/money-transfer-global-currency-stock-exchange-stock-vector-illustration_115579-1492.jpg">
+                              </div>
+                              <h2 class="text-2xl font-medium title-font text-red-900 mt-5">TRANSFER MONEY</h2>
+                              <p class="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">Easily send money to your loved ones</p>
+                              <!-- Anchor tag for linking to transfer_money.html -->
+                              <a href="dwsample1-html.html">
+                                  <button class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </body>
+      `;
+      const newTab = window.open();
+      newTab.document.write(htmlContent);
     } else {
       setVerificationStatus("Invalid verification code");
     }
   };
+  
+  
 
   const handleAadharChange = (e) => {
     const input = e.target.value.replace(/\D/g, '').slice(0, 12);
