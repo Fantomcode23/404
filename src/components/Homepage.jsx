@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import AadharVerification from './AadharVerification';
 function Homepage() {
   return (
     <section className="text-black-900 body-font">

@@ -5,7 +5,7 @@ function generateSixDigitCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-function AadharVerification() {
+function AadharVerification({ onSuccess }) {
   const [aadharNumber, setAadharNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
