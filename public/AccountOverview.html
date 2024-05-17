@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Balance and Transactions</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            background: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="text-gray-700 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-6xl text-4xl font-medium title-font mb-4 text-gray-900">Account Overview</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Check your account balance and recent transactions.</p>
+            </div>
+            <div class="flex flex-col text-center w-full mb-12">
+                <h2 class="text-3xl font-medium title-font mb-4 text-gray-900">Balance: <span id="account-balance">Loading...</span></h2>
+            </div>
+            <div class="flex flex-col w-full mb-12">
+                <h2 class="text-3xl font-medium title-font mb-4 text-gray-900">Recent Transactions</h2>
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full text-left whitespace-no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 bg-gray-200 text-gray-900">Date</th>
+                                <th class="px-4 py-2 bg-gray-200 text-gray-900">Description</th>
+                                <th class="px-4 py-2 bg-gray-200 text-gray-900">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-table">
+                            <!-- Transaction rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Back button -->
+            <div class="flex justify-center">
+                <button onclick="navigateToHomepage()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Back
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simulated data fetching
+        document.addEventListener('DOMContentLoaded', function () {
+            // Replace with actual account balance fetching logic
+            const balance = '1,234.56 RUP';
+            document.getElementById('account-balance').textContent = balance;
+
+            // Replace with actual transactions fetching logic
+            const transactions = [
+                { date: '2024-05-01', description: 'Received payment', amount: '+0.50 RUP' },
+                { date: '2024-05-03', description: 'Sent payment', amount: '-0.20 RUP' },
+                { date: '2024-05-05', description: 'Received payment', amount: '+1.00 RUP' },
+                { date: '2024-05-10', description: 'Sent payment', amount: '-0.30 RUP' },
+            ];
+
+            const transactionsTable = document.getElementById('transactions-table');
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+
+                const dateCell = document.createElement('td');
+                dateCell.className = 'border px-4 py-2';
+                dateCell.textContent = transaction.date;
+                row.appendChild(dateCell);
+
+                const descriptionCell = document.createElement('td');
+                descriptionCell.className = 'border px-4 py-2';
+                descriptionCell.textContent = transaction.description;
+                row.appendChild(descriptionCell);
+
+                const amountCell = document.createElement('td');
+                amountCell.className = 'border px-4 py-2';
+                amountCell.textContent = transaction.amount;
+                row.appendChild(amountCell);
+
+                transactionsTable.appendChild(row);
+            });
+        });
+
+        // Function to navigate to homepage
+        function navigateToHomepage() {
+            window.location.href = 'http://localhost:5173/'; // Change this to your homepage URL
+        }
+    </script>
+</body>
+
+</html>

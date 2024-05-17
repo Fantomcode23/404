@@ -20,7 +20,7 @@ function Homepage() {
               </div>
               <h2 className="text-2xl font-medium title-font text-red-900 mt-5">BALANCE AND TRANSACTIONS</h2>
               <p className="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">View your balance and recent transactions here</p>
-              <a href="dwsample1-html.html">
+              <a href="/AccountOverview.html">
                 <button className="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-blue-300 rounded-full">Check</button>
               </a>
             </div>
@@ -31,7 +31,7 @@ function Homepage() {
               </div>
               <h2 className="text-2xl font-medium title-font text-red-900 mt-5">BUY DIGITAL CURRENCY</h2>
               <p className="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">Purchase your preferred digital currency with ease</p>
-              <a href="dwsample1-html.html">
+              <a href="/BuyCurrency.html">
                 <button className="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-blue-300 rounded-full">Buy</button>
               </a>
             </div>
@@ -42,7 +42,7 @@ function Homepage() {
               </div>
               <h2 className="text-2xl font-medium title-font text-red-900 mt-5">TRANSFER MONEY</h2>
               <p className="sm:text-1xl text-1xl font-medium title-font mt-2 text-orange-200">Easily send money to your loved ones</p>
-              <a href="dwsample1-html.html">
+              <a href="Transfer.html">
                 <button className="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-blue-300 rounded-full">Transfer</button>
               </a>
             </div>
